@@ -33,7 +33,8 @@ fun InstagramToolbar() {
         Row(
             modifier = Modifier
                 .padding(horizontal = spacingLarge)
-                .height(56.dp)
+                .height(56.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = instagramLabel,
@@ -46,16 +47,14 @@ fun InstagramToolbar() {
                 painter = painterResource(id = R.drawable.ic_notification),
                 modifier = Modifier
                     .size(32.dp)
-                    .padding(end = spacingMedium)
-                    .align(Alignment.CenterVertically),
+                    .padding(end = spacingMedium),
                 contentDescription = stringResource(R.string.content_desc_heart)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_message),
                 modifier = Modifier
                     .size(32.dp)
-                    .padding(start = spacingMedium)
-                    .align(Alignment.CenterVertically),
+                    .padding(start = spacingMedium),
                 contentDescription = stringResource(R.string.content_desc_send)
             )
         }
