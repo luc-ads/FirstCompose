@@ -6,12 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.firstcompose.R
-import com.example.firstcompose.data.Story
+import androidx.compose.ui.unit.dp
+import com.example.firstcompose.data.model.Story
+import com.example.firstcompose.data.repository.stories
+import com.example.firstcompose.ui.theme.colorDivider
 import com.example.firstcompose.ui.theme.spacingMedium
 
 
@@ -25,20 +28,8 @@ fun HomeScreen() {
     ) {
 
         InstagramToolbar()
-
-        val stories = listOf(
-            Story("lp_silvaa", R.drawable.image_jpg),
-            Story("felp", R.drawable.ryan_gsling),
-            Story("j_hill", R.drawable.jonah_hill),
-            Story("lp_silvaa", R.drawable.image_jpg),
-            Story("felp", R.drawable.ryan_gsling),
-            Story("j_hill", R.drawable.jonah_hill),
-            Story("lp_silvaa", R.drawable.image_jpg),
-            Story("felp", R.drawable.ryan_gsling),
-            Story("j_hill", R.drawable.jonah_hill)
-        )
-
         StoryList(stories = stories)
+        Divider(color = colorDivider, thickness = 0.2.dp)
     }
 }
 

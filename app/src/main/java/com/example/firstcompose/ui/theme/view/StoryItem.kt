@@ -23,7 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.firstcompose.R
-import com.example.firstcompose.data.Story
+import com.example.firstcompose.data.model.Story
+import com.example.firstcompose.data.repository.stories
 import com.example.firstcompose.ui.theme.spacingSmall
 import com.example.firstcompose.ui.theme.storyCircleColorToCloseFriends
 
@@ -68,5 +69,5 @@ fun StoryItem(story: Story) {
 @Preview(showBackground = true)
 @Composable
 fun StoryItemPreview() {
-    StoryItem(story = Story("lp_silvaa", R.drawable.image_jpg))
+    StoryItem(story = stories[2])
 }

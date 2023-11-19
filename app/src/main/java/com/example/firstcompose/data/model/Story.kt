@@ -1,4 +1,4 @@
-package com.example.firstcompose.data
+package com.example.firstcompose.data.model
 
 class Story(
     val userNickName: String,
