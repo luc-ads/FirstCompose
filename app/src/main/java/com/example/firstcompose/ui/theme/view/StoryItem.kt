@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,6 +22,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.firstcompose.R
 import com.example.firstcompose.data.Story
 import com.example.firstcompose.ui.theme.spacingSmall
+import com.example.firstcompose.ui.theme.storyCircleColorToCloseFriends
 
 //Anotação para sinalizar que determinado recurso ainda está em alpha, ou seja, fase experimental
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -44,9 +44,11 @@ fun StoryItem(story: Story) {
                 .align(Alignment.CenterHorizontally)
                 .fillMaxSize()
                 .clip(CircleShape)
-                .border(1.5.dp, Color.Red, CircleShape),
+                .border(2.dp, storyCircleColorToCloseFriends, CircleShape),
             contentScale = ContentScale.Crop
         )
+
+
     }
 
 }
