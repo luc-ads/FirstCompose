@@ -35,7 +35,6 @@ fun InstagramToolbar() {
                     .weight(1f)
                     .align(Alignment.CenterVertically),
                 style = MaterialTheme.typography.headlineLarge,
-
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_notification),
