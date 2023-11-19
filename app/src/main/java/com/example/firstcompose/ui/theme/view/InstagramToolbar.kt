@@ -14,23 +14,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.R
+import com.example.firstcompose.ui.theme.spacingLarge
+import com.example.firstcompose.ui.theme.spacingMedium
 
 @Composable
 fun InstagramToolbar() {
+
+    //Será mesmo uma boa prática isolar as strings em variáveis dessa forma?
+    val instagramLabel = stringResource(id = R.string.instagramLabel)
 
     Box(
         modifier = Modifier.background(Color.White)
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = spacingLarge)
                 .height(56.dp)
         ) {
             Text(
-                text = "Instagram",
+                text = instagramLabel,
                 modifier = Modifier
                     .weight(1f)
                     .align(Alignment.CenterVertically),
@@ -40,17 +46,17 @@ fun InstagramToolbar() {
                 painter = painterResource(id = R.drawable.ic_notification),
                 modifier = Modifier
                     .size(32.dp)
-                    .padding(end = 8.dp)
+                    .padding(end = spacingMedium)
                     .align(Alignment.CenterVertically),
-                contentDescription = "Icone Heart"
+                contentDescription = stringResource(R.string.content_desc_heart)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_message),
                 modifier = Modifier
                     .size(32.dp)
-                    .padding(start = 8.dp)
+                    .padding(start = spacingMedium)
                     .align(Alignment.CenterVertically),
-                contentDescription = "Icone Send"
+                contentDescription = stringResource(R.string.content_desc_send)
             )
         }
     }
