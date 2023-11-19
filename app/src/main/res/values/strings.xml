@@ -3,4 +3,6 @@
     <string name="instagramLabel">Instagram</string>
     <string name="content_desc_heart">Icone Heart</string>
     <string name="content_desc_send">Icone Send</string>
+    
+    <string name="content_descrition_story" formatted="true">Storie de %s não visualizado</string>
 </resources>

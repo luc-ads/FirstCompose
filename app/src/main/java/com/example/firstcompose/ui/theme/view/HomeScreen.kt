@@ -7,6 +7,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.firstcompose.R
+import com.example.firstcompose.data.Story
 
 
 @Composable
@@ -18,6 +20,7 @@ fun HomeScreen() {
             .background(MaterialTheme.colorScheme.background)) {
 
         InstagramToolbar()
+        StoryItem(story = Story("lp_silvaa", R.drawable.image_jpg))
     }
 }
 
