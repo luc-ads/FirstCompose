@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.firstcompose.R
+import com.example.firstcompose.data.model.Feed
 import com.example.firstcompose.data.model.Story
 import com.example.firstcompose.data.repository.stories
 import com.example.firstcompose.ui.theme.colorDivider
@@ -30,6 +32,14 @@ fun HomeScreen() {
         InstagramToolbar()
         StoryList(stories = stories)
         Divider(color = colorDivider, thickness = 0.2.dp)
+        FeedItem(feed = Feed(
+            userNickName = "lp_silvaa",
+            localName = "Sp - São Paulo",
+            userAvatar = R.drawable.image_jpg,
+            imageUrl = R.drawable.image_jpg,
+            description = "",
+            postedAgo = "15 minutos atrás"
+        ))
     }
 }
 
