@@ -5,4 +5,9 @@
     <string name="content_desc_send">Icone Send</string>
     
     <string name="content_descrition_story" formatted="true">Storie de %s não visualizado</string>
+    <string name="avatar_com_imagem_do_autor_da_postagem">Avatar com imagem do autor da postagem</string>
+    <string name="imagem_exibindo_a_foto_do_instagram">Imagem exibindo a foto do Instagram</string>
+    <string name="icone_de_curtir">Icone de curtir</string>
+    <string name="icone_de_comentar">ícone de comentar</string>
+    <string name="icone_de_enviar">ícone de enviar</string>
 </resources>

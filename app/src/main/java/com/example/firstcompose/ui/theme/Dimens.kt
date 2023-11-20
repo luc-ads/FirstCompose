@@ -5,6 +5,7 @@ import androidx.compose.ui.unit.sp
 
 val spacingSmall = 4.dp
 val spacingMedium = 8.dp
+val spacingHalfLarge = 12.dp
 val spacingLarge = 16.dp
 val spacingXLarge = 24.dp
 
