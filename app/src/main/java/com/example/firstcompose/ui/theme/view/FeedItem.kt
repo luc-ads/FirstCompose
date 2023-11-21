@@ -31,6 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.R
 import com.example.firstcompose.data.model.Feed
+import com.example.firstcompose.ui.theme.fontSmall
+import com.example.firstcompose.ui.theme.gray
 import com.example.firstcompose.ui.theme.spacingHalfLarge
 import com.example.firstcompose.ui.theme.spacingLarge
 import com.example.firstcompose.ui.theme.spacingMedium
@@ -115,7 +117,7 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_curtir),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(30.dp)
+                    .size(28.dp)
             )
 
             FeedIcon(
@@ -123,7 +125,7 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_comentar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(30.dp)
+                    .size(28.dp)
             )
 
             FeedIcon(
@@ -131,14 +133,14 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(30.dp)
+                    .size(28.dp)
             )
 
             FeedIcon(
                 iconDrawable = bookmarkIcon,
                 contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(28.dp)
                     .weight(1f)
                     .wrapContentWidth(align = Alignment.End)
             )
@@ -174,8 +176,20 @@ fun FeedItem(feed: Feed) {
             text = textoPost,
             modifier = Modifier
                 .padding(horizontal = spacingLarge)
-                .padding(top = spacingSmall)
+                .padding(top = spacingSmall),
         )
+
+        Text(text = feed.postedAgo,
+            modifier = Modifier
+                .padding(horizontal = spacingLarge)
+                .padding(top = spacingSmall),
+            fontSize = fontSmall,
+            maxLines = 1,
+            color = gray,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Start
+        )
+
     }
 }
 
