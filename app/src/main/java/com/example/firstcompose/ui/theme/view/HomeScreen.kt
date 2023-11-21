@@ -37,7 +37,7 @@ fun HomeScreen() {
             localName = "Sp - São Paulo",
             userAvatar = R.drawable.image_jpg,
             imageUrl = R.drawable.image_jpg,
-            description = "",
+            description = "Férias em Sp merecidas para descansar!",
             postedAgo = "15 minutos atrás"
         ))
     }

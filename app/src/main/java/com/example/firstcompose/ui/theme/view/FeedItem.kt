@@ -1,5 +1,6 @@
 package com.example.firstcompose.ui.theme.view
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,9 +21,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.R
@@ -106,37 +110,87 @@ fun FeedItem(feed: Feed) {
                 .fillMaxWidth()
         ) {
 
-            Image(
-                painter = painterResource(id = likeIcon),
-                contentDescription = stringResource(R.string.icone_de_curtir),
+            FeedIcon(
+                iconDrawable = likeIcon,
+                contentDesc = stringResource(R.string.icone_de_curtir),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
                     .size(30.dp)
             )
-            Image(
-                painter = painterResource(id = commentIcon),
-                contentDescription = stringResource(R.string.icone_de_comentar),
+
+            FeedIcon(
+                iconDrawable = commentIcon,
+                contentDesc = stringResource(R.string.icone_de_comentar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
                     .size(30.dp)
             )
-            Image(
-                painter = painterResource(id = messageIcon),
-                contentDescription = stringResource(R.string.icone_de_enviar),
+
+            FeedIcon(
+                iconDrawable = messageIcon,
+                contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
                     .size(30.dp)
             )
-            Image(
-                painter = painterResource(id = bookmarkIcon),
-                contentDescription = stringResource(R.string.icone_de_enviar),
+
+            FeedIcon(
+                iconDrawable = bookmarkIcon,
+                contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
                     .size(30.dp)
                     .weight(1f)
                     .wrapContentWidth(align = Alignment.End)
             )
+
         }
+
+        val textoLikes = buildAnnotatedString {
+            append("Curtido por ")
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("j_hill ")
+            }
+            append("e ")
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("outras pessoas")
+            }
+        }
+
+        val textoPost = buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append(feed.userNickName)
+            }
+            append(" ${feed.description}")
+        }
+
+        Text(
+            text = textoLikes,
+            modifier = Modifier
+                .padding(horizontal = spacingLarge)
+                .padding(top = spacingLarge)
+        )
+
+        Text(
+            text = textoPost,
+            modifier = Modifier
+                .padding(horizontal = spacingLarge)
+                .padding(top = spacingSmall)
+        )
     }
+}
+
+
+@Composable
+fun FeedIcon(
+    @DrawableRes iconDrawable: Int,
+    contentDesc: String,
+    modifier: Modifier
+) {
+    Image(
+        painter = painterResource(id = iconDrawable),
+        contentDescription = contentDesc,
+        modifier = modifier
+    )
 }
 
 @Preview(showBackground = true)
