@@ -1,10 +1,9 @@
 package com.example.firstcompose.ui.theme.view
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
@@ -15,7 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.data.model.Feed
 import com.example.firstcompose.data.model.Story
-import com.example.firstcompose.data.repository.feedList
 import com.example.firstcompose.data.repository.stories
 import com.example.firstcompose.ui.theme.colorDivider
 import com.example.firstcompose.ui.theme.spacingMedium
@@ -24,16 +22,20 @@ import com.example.firstcompose.ui.theme.spacingMedium
 @Composable
 fun HomeScreen() {
 
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-
-        InstagramToolbar()
-        StoryList(stories = stories)
-        Divider(color = colorDivider, thickness = 0.2.dp)
-        FeedList(posts = feedList)
+        item {
+            InstagramToolbar()
+        }
+        item {
+            StoryList(stories = stories)
+        }
+        item {
+            Divider(color = colorDivider, thickness = 0.2.dp)
+        }
+        feedList(com.example.firstcompose.data.repository.feedList)
     }
 }
 
@@ -46,12 +48,9 @@ fun StoryList(stories: List<Story>) {
     }
 }
 
-@Composable
-fun FeedList(posts: List<Feed>) {
-    LazyColumn(modifier = Modifier.padding(top = spacingMedium)) {
-        itemsIndexed(posts) { _, item ->
-            FeedItem(feed = item)
-        }
+fun LazyListScope.feedList(feedList: List<Feed>) {
+    itemsIndexed(feedList) { _, item ->
+        FeedItem(feed = item)
     }
 }
 
