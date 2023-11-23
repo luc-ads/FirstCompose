@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.firstcompose.data.model.Feed
 import com.example.firstcompose.data.model.Story
 import com.example.firstcompose.data.repository.stories
-import com.example.firstcompose.ui.theme.colorDivider
+import com.example.firstcompose.ui.theme.FirstComposeTheme
 import com.example.firstcompose.ui.theme.spacingMedium
 
 
@@ -33,7 +33,7 @@ fun HomeScreen() {
             StoryList(stories = stories)
         }
         item {
-            Divider(color = colorDivider, thickness = 0.2.dp)
+            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 0.2.dp)
         }
         feedList(com.example.firstcompose.data.repository.feedList)
     }
@@ -58,4 +58,12 @@ fun LazyListScope.feedList(feedList: List<Feed>) {
 @Composable
 fun HomeScreenPreview() {
     HomeScreen()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreviewDark() {
+    FirstComposeTheme(darkTheme = true) {
+        HomeScreen()
+    }
 }

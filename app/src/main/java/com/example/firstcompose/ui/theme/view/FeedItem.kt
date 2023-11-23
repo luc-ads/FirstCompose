@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.R
 import com.example.firstcompose.data.model.Feed
+import com.example.firstcompose.data.repository.feedList
+import com.example.firstcompose.ui.theme.FirstComposeTheme
 import com.example.firstcompose.ui.theme.fontSmall
 import com.example.firstcompose.ui.theme.gray
 import com.example.firstcompose.ui.theme.spacingHalfLarge
@@ -48,6 +51,8 @@ fun FeedItem(feed: Feed) {
     val messageIcon = R.drawable.ic_message
     val commentIcon = R.drawable.ic_comment
     val bookmarkIcon = R.drawable.ic_bookmark
+
+    val iconsColor = MaterialTheme.colorScheme.onBackground
 
     Column(
         modifier = Modifier
@@ -117,7 +122,8 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_curtir),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(28.dp)
+                    .size(28.dp),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
 
             FeedIcon(
@@ -125,7 +131,8 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_comentar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(28.dp)
+                    .size(28.dp),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
 
             FeedIcon(
@@ -133,7 +140,8 @@ fun FeedItem(feed: Feed) {
                 contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(28.dp)
+                    .size(28.dp),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
 
             FeedIcon(
@@ -142,7 +150,8 @@ fun FeedItem(feed: Feed) {
                 modifier = Modifier
                     .size(28.dp)
                     .weight(1f)
-                    .wrapContentWidth(align = Alignment.End)
+                    .wrapContentWidth(align = Alignment.End),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
 
         }
@@ -179,7 +188,8 @@ fun FeedItem(feed: Feed) {
                 .padding(top = spacingSmall),
         )
 
-        Text(text = feed.postedAgo,
+        Text(
+            text = feed.postedAgo,
             modifier = Modifier
                 .padding(horizontal = spacingLarge)
                 .padding(top = spacingSmall),
@@ -198,12 +208,14 @@ fun FeedItem(feed: Feed) {
 fun FeedIcon(
     @DrawableRes iconDrawable: Int,
     contentDesc: String,
-    modifier: Modifier
+    modifier: Modifier,
+    colorFilter: ColorFilter
 ) {
     Image(
         painter = painterResource(id = iconDrawable),
         contentDescription = contentDesc,
-        modifier = modifier
+        modifier = modifier,
+        colorFilter = colorFilter
     )
 }
 
@@ -211,14 +223,18 @@ fun FeedIcon(
 @Composable
 fun FeedItemPreview() {
     FeedItem(
-        feed = Feed(
-            "lp_silvaa",
-            "SP - São Paulo",
-            R.drawable.image_jpg,
-            R.drawable.image_jpg,
-            "Férias merecidas",
-            "2 min"
-        )
+        feed = feedList[0]
     )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun FeedItemPreviewDark() {
+    FirstComposeTheme(darkTheme = true) {
+        FeedItem(
+            feed = feedList[0]
+        )
+    }
 }
 

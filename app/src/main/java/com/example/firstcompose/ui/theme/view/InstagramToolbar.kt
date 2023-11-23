@@ -12,12 +12,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.firstcompose.R
+import com.example.firstcompose.ui.theme.FirstComposeTheme
 import com.example.firstcompose.ui.theme.spacingLarge
 import com.example.firstcompose.ui.theme.spacingMedium
 
@@ -27,8 +28,10 @@ fun InstagramToolbar() {
     //Será mesmo uma boa prática isolar as strings em variáveis dessa forma?
     val instagramLabel = stringResource(id = R.string.instagramLabel)
 
+    val iconsColor = MaterialTheme.colorScheme.onBackground
+
     Box(
-        modifier = Modifier.background(Color.White)
+        modifier = Modifier.background(MaterialTheme.colorScheme.background)
     ) {
         Row(
             modifier = Modifier
@@ -48,14 +51,16 @@ fun InstagramToolbar() {
                 modifier = Modifier
                     .size(32.dp)
                     .padding(end = spacingMedium),
-                contentDescription = stringResource(R.string.content_desc_heart)
+                contentDescription = stringResource(R.string.content_desc_heart),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_message),
                 modifier = Modifier
                     .size(32.dp)
                     .padding(start = spacingMedium),
-                contentDescription = stringResource(R.string.content_desc_send)
+                contentDescription = stringResource(R.string.content_desc_send),
+                colorFilter = ColorFilter.tint(iconsColor)
             )
         }
     }
@@ -66,5 +71,13 @@ fun InstagramToolbar() {
 @Composable
 fun InstagramToolbarPreview() {
     InstagramToolbar()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InstagramToolbarPreviewDark() {
+    FirstComposeTheme(darkTheme = true) {
+        InstagramToolbar()
+    }
 }
 
