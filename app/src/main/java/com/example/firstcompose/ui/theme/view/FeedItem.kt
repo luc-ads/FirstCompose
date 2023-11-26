@@ -3,6 +3,7 @@ package com.example.firstcompose.ui.theme.view
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +16,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -48,11 +54,14 @@ fun FeedItem(feed: Feed) {
     val feedImageContentDesc = stringResource(R.string.imagem_exibindo_a_foto_do_instagram)
 
     val likeIcon = R.drawable.ic_notification
+    val likedIcon = R.drawable.ic_liked
     val messageIcon = R.drawable.ic_message
     val commentIcon = R.drawable.ic_comment
     val bookmarkIcon = R.drawable.ic_bookmark
 
     val iconsColor = MaterialTheme.colorScheme.onBackground
+    var isLiked by rememberSaveable { mutableStateOf(false) }
+    val likedColor = if (isLiked) Color.Red else iconsColor
 
     Column(
         modifier = Modifier
@@ -118,12 +127,13 @@ fun FeedItem(feed: Feed) {
         ) {
 
             FeedIcon(
-                iconDrawable = likeIcon,
+                iconDrawable = if (isLiked) likedIcon else likeIcon,
                 contentDesc = stringResource(R.string.icone_de_curtir),
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
-                    .size(28.dp),
-                colorFilter = ColorFilter.tint(iconsColor)
+                    .size(28.dp)
+                    .clickable { isLiked = !isLiked },
+                color = likedColor,
             )
 
             FeedIcon(
@@ -132,7 +142,7 @@ fun FeedItem(feed: Feed) {
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
                     .size(28.dp),
-                colorFilter = ColorFilter.tint(iconsColor)
+                color = iconsColor
             )
 
             FeedIcon(
@@ -141,7 +151,7 @@ fun FeedItem(feed: Feed) {
                 modifier = Modifier
                     .padding(end = spacingHalfLarge)
                     .size(28.dp),
-                colorFilter = ColorFilter.tint(iconsColor)
+                color = iconsColor
             )
 
             FeedIcon(
@@ -151,7 +161,7 @@ fun FeedItem(feed: Feed) {
                     .size(28.dp)
                     .weight(1f)
                     .wrapContentWidth(align = Alignment.End),
-                colorFilter = ColorFilter.tint(iconsColor)
+                color = iconsColor
             )
 
         }
@@ -209,13 +219,13 @@ fun FeedIcon(
     @DrawableRes iconDrawable: Int,
     contentDesc: String,
     modifier: Modifier,
-    colorFilter: ColorFilter
+    color: Color
 ) {
     Image(
         painter = painterResource(id = iconDrawable),
         contentDescription = contentDesc,
         modifier = modifier,
-        colorFilter = colorFilter
+        colorFilter = ColorFilter.tint(color)
     )
 }
 
