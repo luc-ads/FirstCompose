@@ -23,15 +23,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.example.firstcompose.R
+import com.example.firstcompose.data.model.StatusStory
 import com.example.firstcompose.data.model.Story
 import com.example.firstcompose.data.repository.stories
 import com.example.firstcompose.ui.theme.spacingSmall
 import com.example.firstcompose.ui.theme.storyCircleColorToCloseFriends
+import com.example.firstcompose.ui.theme.storyCircleColorToView
+import com.example.firstcompose.ui.theme.storyCircleColorVisualized
 
 //Anotação para sinalizar que determinado recurso ainda está em alpha, ou seja, fase experimental
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun StoryItem(story: Story) {
+    
+    val storyColorBorder =
+        when (story.userStatus) {
+            StatusStory.CLOSE -> {
+                storyCircleColorToCloseFriends
+            }
+            StatusStory.NORMAL -> {
+                storyCircleColorVisualized
+            }
+            else -> {
+                storyCircleColorToView
+            }
+        }
 
     val avatarContentDesc =
         stringResource(id = R.string.content_descrition_story, story.userNickName)
@@ -49,7 +65,7 @@ fun StoryItem(story: Story) {
                 .align(Alignment.CenterHorizontally)
                 .fillMaxSize()
                 .clip(CircleShape)
-                .border(2.dp, storyCircleColorToCloseFriends, CircleShape),
+                .border(2.dp, storyColorBorder, CircleShape),
             contentScale = ContentScale.Crop
         )
 
@@ -63,11 +79,10 @@ fun StoryItem(story: Story) {
         )
 
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun StoryItemPreview() {
-    StoryItem(story = stories[2])
+    StoryItem(story = stories[1])
 }

@@ -2,20 +2,21 @@ package com.example.firstcompose.data.repository
 
 import com.example.firstcompose.R
 import com.example.firstcompose.data.model.Feed
+import com.example.firstcompose.data.model.StatusStory
 import com.example.firstcompose.data.model.Story
 val stories = listOf(
-    Story("lp_silvaa", R.drawable.image_jpg),
-    Story("ryan_g", R.drawable.ryan_gsling),
-    Story("j_hill", R.drawable.jonah_hill),
-    Story("brad_pitt", R.drawable.brad_pitt),
-    Story("lp_silvaa", R.drawable.image_jpg),
-    Story("ryan_g", R.drawable.ryan_gsling),
-    Story("j_hill", R.drawable.jonah_hill),
-    Story("brad_pitt", R.drawable.brad_pitt),
-    Story("lp_silvaa", R.drawable.image_jpg),
-    Story("ryan_g", R.drawable.ryan_gsling),
-    Story("j_hill", R.drawable.jonah_hill),
-    Story("brad_pitt", R.drawable.brad_pitt)
+    Story("lp_silvaa", R.drawable.image_jpg, StatusStory.NORMAL),
+    Story("ryan_g", R.drawable.ryan_gsling, StatusStory.VISUALIZED),
+    Story("j_hill", R.drawable.jonah_hill, StatusStory.CLOSE),
+    Story("brad_pitt", R.drawable.brad_pitt, StatusStory.CLOSE),
+    Story("lp_silvaa", R.drawable.image_jpg, StatusStory.NORMAL),
+    Story("ryan_g", R.drawable.ryan_gsling, StatusStory.CLOSE),
+    Story("j_hill", R.drawable.jonah_hill, StatusStory.VISUALIZED),
+    Story("brad_pitt", R.drawable.brad_pitt, StatusStory.NORMAL),
+    Story("lp_silvaa", R.drawable.image_jpg, StatusStory.NORMAL),
+    Story("ryan_g", R.drawable.ryan_gsling, StatusStory.VISUALIZED),
+    Story("j_hill", R.drawable.jonah_hill, StatusStory.CLOSE),
+    Story("brad_pitt", R.drawable.brad_pitt, StatusStory.NORMAL)
 )
 
 val feedList = listOf(
