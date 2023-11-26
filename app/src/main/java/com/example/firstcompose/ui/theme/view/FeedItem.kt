@@ -58,9 +58,11 @@ fun FeedItem(feed: Feed) {
     val messageIcon = R.drawable.ic_message
     val commentIcon = R.drawable.ic_comment
     val bookmarkIcon = R.drawable.ic_bookmark
+    val bookmarkActivedIcon = R.drawable.bookmark_actived
 
     val iconsColor = MaterialTheme.colorScheme.onBackground
     var isLiked by rememberSaveable { mutableStateOf(false) }
+    var isSaved by rememberSaveable { mutableStateOf(false) }
     val likedColor = if (isLiked) Color.Red else iconsColor
 
     Column(
@@ -155,15 +157,15 @@ fun FeedItem(feed: Feed) {
             )
 
             FeedIcon(
-                iconDrawable = bookmarkIcon,
+                iconDrawable = if (isSaved) bookmarkActivedIcon else bookmarkIcon,
                 contentDesc = stringResource(R.string.icone_de_enviar),
                 modifier = Modifier
                     .size(28.dp)
                     .weight(1f)
-                    .wrapContentWidth(align = Alignment.End),
+                    .wrapContentWidth(align = Alignment.End)
+                    .clickable { isSaved = !isSaved },
                 color = iconsColor
             )
-
         }
 
         val textoLikes = buildAnnotatedString {
