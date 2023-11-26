@@ -60,9 +60,9 @@ fun FeedItem(feed: Feed) {
     val bookmarkIcon = R.drawable.ic_bookmark
     val bookmarkActivedIcon = R.drawable.bookmark_actived
 
-    val iconsColor = MaterialTheme.colorScheme.onBackground
     var isLiked by rememberSaveable { mutableStateOf(false) }
     var isSaved by rememberSaveable { mutableStateOf(false) }
+    val iconsColor = MaterialTheme.colorScheme.onBackground
     val likedColor = if (isLiked) Color.Red else iconsColor
 
     Column(
